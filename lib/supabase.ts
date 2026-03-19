@@ -57,9 +57,15 @@ export type Catalogo = {
   titulo: string;
   descricao: string | null;
   preco: string | null;
+  preco_posicao_x: number;
+  preco_posicao_y: number;
+  preco_tamanho: number;
+  preco_cor: string;
   cta_label: string;
   cta_url: string | null;
-  pdf_url: string | null;
+  imagem_url: string | null;
+  pagina_tamanho: string;
+  orientacao: 'retrato' | 'paisagem';
   ordem: number;
   ativo: boolean;
   created_at: string;
