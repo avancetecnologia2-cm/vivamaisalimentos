@@ -148,9 +148,15 @@ export default function AdminDashboard() {
         slug: catalogo.slug,
         descricao: catalogo.descricao || '',
         preco: catalogo.preco || '',
+        preco_posicao_x: catalogo.preco_posicao_x || 50,
+        preco_posicao_y: catalogo.preco_posicao_y || 50,
+        preco_tamanho: catalogo.preco_tamanho || 24,
+        preco_cor: catalogo.preco_cor || '#000000',
         cta_label: catalogo.cta_label,
         cta_url: catalogo.cta_url || '',
-        pdf_url: catalogo.pdf_url || '',
+        imagem_url: catalogo.imagem_url || '',
+        pagina_tamanho: catalogo.pagina_tamanho || 'A4',
+        orientacao: catalogo.orientacao || 'retrato',
         ativo: catalogo.ativo,
       });
     } else {
@@ -160,9 +166,15 @@ export default function AdminDashboard() {
         slug: '',
         descricao: '',
         preco: '',
+        preco_posicao_x: 50,
+        preco_posicao_y: 50,
+        preco_tamanho: 24,
+        preco_cor: '#000000',
         cta_label: 'Saiba mais',
         cta_url: '',
-        pdf_url: '',
+        imagem_url: '',
+        pagina_tamanho: 'A4',
+        orientacao: 'retrato',
         ativo: true,
       });
     }
@@ -228,8 +240,8 @@ export default function AdminDashboard() {
     }
   }
 
-  function handleSelectPdf(url: string, path: string) {
-    setFormData({ ...formData, pdf_url: url });
+  function handleSelectImagem(url: string, path: string) {
+    setFormData({ ...formData, imagem_url: url });
     setShowFileManager(false);
   }
 
@@ -404,17 +416,17 @@ export default function AdminDashboard() {
                 </div>
               </div>
 
-              {/* PDF URL com FileManager */}
+              {/* Imagem com FileManager */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  URL do PDF
+                  Imagem do Catálogo
                 </label>
                 <div className="flex gap-2">
                   <input
                     type="url"
-                    value={formData.pdf_url}
+                    value={formData.imagem_url}
                     onChange={(e) =>
-                      setFormData({ ...formData, pdf_url: e.target.value })
+                      setFormData({ ...formData, imagem_url: e.target.value })
                     }
                     className="flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
                     placeholder="https://..."
@@ -428,7 +440,7 @@ export default function AdminDashboard() {
                   </button>
                 </div>
                 <p className="text-xs text-gray-500 mt-1">
-                  Cole a URL do PDF ou clique em Selecionar para fazer upload
+                  Cole a URL da imagem ou clique em Selecionar para fazer upload
                 </p>
               </div>
 
@@ -436,8 +448,8 @@ export default function AdminDashboard() {
               {showFileManager && (
                 <div className="mt-4">
                   <FileManager
-                    onSelect={handleSelectPdf}
-                    selectedUrl={formData.pdf_url}
+                    onSelect={handleSelectImagem}
+                    selectedUrl={formData.imagem_url}
                   />
                 </div>
               )}
